@@ -1,0 +1,44 @@
+<html>
+<head><title>Options - Dailymile Week Resolution </title>
+<script type="text/javascript" src="options.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<style>
+h2{
+font-family: bbold;
+font-size: 27px;
+line-height: normal;
+}
+#content{
+  padding:20px;
+  margin-left:auto;
+  margin-right:auto;
+  width:50%;
+  font-family: 'Helvetica Neue', Arial, Helvetica, FreeSans, sans-serif;
+  font-size: 13px;
+  line-height: 27px;
+}
+#save{
+  margin-top:20px;
+}
+#status{
+  color: red;
+  margin-left: 20px;
+  display:inline;
+}
+</style>
+</head>
+
+<body>
+<div id="content">
+<h2>Dailymile Week Resolution Options</h2>
+<strong>Current selection will show:</strong>
+<div id="selectionImg"></div>
+<br/>
+<strong>Resolution bar option:</strong> <br/>
+<input type="radio" name="type" value="onlyDistance">Show only distance resolution<br/>
+<input type="radio" name="type" value="distanceAndTime">Show distance and time resolution (will call server one more time)<br/>
+<button id="save">Save</button><div id="status" style="display:none">Your option is saved...</div>
+
+</div>
+</body>
+</html>
