@@ -192,8 +192,17 @@ function readFromApi(){
   else{
     periodDates = {first: period.replace(/\s+/g, '').substring(0,5), last: period.replace(/\s+/g, '').substring(6,11)};
   }
-  var isNextYear = parseInt(periodDates.first.split('/')[0]) > parseInt(periodDates.last.split('/')[0]);
-  callAPI(getUserName(),getUnixTime(periodDates.first,true,false),getUnixTime(periodDates.last,false,isNextYear));
+  var isNextYear = false;
+  var isPrevYear = false;
+  var currentDay = new Date()
+  var month = currentDay.getMonth() + 1;
+  if(parseInt(periodDates.first.split('/')[0]) > parseInt(periodDates.last.split('/')[0]) && parseInt(periodDates.first.split('/')[0]) == month){
+    isNextYear = true;
+  }
+  if(parseInt(periodDates.first.split('/')[0]) > parseInt(periodDates.last.split('/')[0]) && parseInt(periodDates.first.split('/')[0]) != month){
+    isPrevYear = true;
+  }
+  callAPI(getUserName(),getUnixTime(periodDates.first,true,false,isPrevYear),getUnixTime(periodDates.last,false,isNextYear,false));
 }
 
 function jsonToWeek(jsonObj){
@@ -254,11 +263,15 @@ function callAPI(user, since, until){
 }
   
 //girdi biçimi: 11/26
-function getUnixTime(yourDate, isDayStart, isNextYear) {
+function getUnixTime(yourDate, isDayStart, isNextYear, isPrevYear) {
     var currentTime = new Date();
     var year = currentTime.getFullYear();
+    var month = currentTime.getMonth() + 1;
+    var prevYear = parseInt(yourDate.split('/')[0],10) > month;
     if(isNextYear){
       year = year + 1;}
+    if(isPrevYear || prevYear){
+      year = year - 1;}
     if(isDayStart){
       return new Date(year,parseInt(yourDate.split('/')[0],10)-1,parseInt(yourDate.split('/')[1],10),0,0,1).getTime()/1000;}
     else{
