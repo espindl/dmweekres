@@ -267,10 +267,9 @@ function getUnixTime(yourDate, isDayStart, isNextYear, isPrevYear) {
     var currentTime = new Date();
     var year = currentTime.getFullYear();
     var month = currentTime.getMonth() + 1;
-    var prevYear = parseInt(yourDate.split('/')[0],10) > month;
     if(isNextYear){
       year = year + 1;}
-    if(isPrevYear || prevYear){
+    if(isPrevYear){
       year = year - 1;}
     if(isDayStart){
       return new Date(year,parseInt(yourDate.split('/')[0],10)-1,parseInt(yourDate.split('/')[1],10),0,0,1).getTime()/1000;}
