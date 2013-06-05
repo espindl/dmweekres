@@ -88,7 +88,7 @@ function addWeekDetailBar(index){
   $($('.slide')[index]).find('#training_bars').children('li.active').each(function(index){
     $(this).find('#mileage_breakdown').each(function(index){
       $(this).find('.activity_name').each(function(index){
-          var activityName = $(this).text();
+          var activityName = $.trim($(this).text());
           $(this).nextUntil('dt').each(function(index){
             var bdMiles = $(this).find('.breakdown_miles');
             if(bdMiles.length!=0){
